@@ -2,171 +2,170 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Feliz 3er Mes</title>
+  <title>Te Amo ❤️</title>
   <style>
-    body {
+    * {
       margin: 0;
       padding: 0;
-      font-family: 'Courier New', cursive;
-      background-color: #fff0f5;
-      color: #333;
-      display: flex;
-      flex-direction: column;
+      box-sizing: border-box;
+    }
+    body {
+      background: #fff0f5;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+    .pantalla {
+      display: none;
+      justify-content: center;
       align-items: center;
-      justify-content: flex-start;
       height: 100vh;
-      overflow-x: hidden;
-    }.sobre {
-  width: 220px;
-  height: 150px;
-  background: #b22222;
-  position: relative;
-  margin-top: 100px;
-  cursor: pointer;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  animation: latido 1s infinite;
-}
-
-.sobre::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-left: 110px solid transparent;
-  border-right: 110px solid transparent;
-  border-bottom: 75px solid #f08080;
-}
-
-@keyframes latido {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-
-.contenido {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  text-align: center;
-}
-
-.foto {
-  max-width: 80%;
-  margin: 20px 0;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-  display: none;
-}
-
-.carta-texto {
-  white-space: pre-wrap;
-  font-size: 1.1em;
-  text-align: left;
-  max-width: 90%;
-  margin-bottom: 20px;
-  display: none;
-}
-
-.spam-teamo {
-  font-family: monospace;
-  font-size: 0.8em;
-  margin: 20px 0;
-  display: none;
-  max-width: 90%;
-}
-
-.corazon-img {
-  max-width: 80%;
-  display: none;
-  margin-bottom: 20px;
-}
-
-.final-msg {
-  font-weight: bold;
-  font-size: 1.1em;
-  margin: 20px;
-  display: none;
-}
-
+      flex-direction: column;
+      padding: 20px;
+    }
+    .activa {
+      display: flex !important;
+    }
+    .sobre {
+      width: 200px;
+      height: 150px;
+      background: #f08080;
+      position: relative;
+      border-radius: 10px;
+      cursor: pointer;
+      animation: flotar 2s infinite ease-in-out;
+    }
+    .sobre::before, .sobre::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #ffb6c1;
+      transform: rotate(45deg);
+      top: -50%;
+      left: 0;
+      border-radius: 10px;
+    }
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .imagen {
+      max-width: 90%;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      animation: aparecer 1.5s ease-in-out forwards;
+    }
+    @keyframes aparecer {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .texto-escribiendo {
+      font-family: 'Courier New', monospace;
+      font-size: 1.2em;
+      white-space: pre-wrap;
+      border-right: 2px solid black;
+      animation: cursor 0.8s steps(1) infinite;
+    }
+    @keyframes cursor {
+      50% { border-color: transparent; }
+    }
+    .teamo {
+      position: absolute;
+      font-size: 20px;
+      color: #ff1493;
+      animation: rebote 3s ease-out forwards;
+      user-select: none;
+    }
+    @keyframes rebote {
+      0% { transform: translateY(-200px); opacity: 0; }
+      60% { transform: translateY(30px); opacity: 1; }
+      80% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #db7093;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
-  <div class="sobre" id="sobre"></div>  <div class="contenido" id="contenido">
-    <img src="img1.jpg" class="foto" id="foto1" alt="Foto 1"><div class="carta-texto" id="textoCarta"></div>
-
-<div class="spam-teamo" id="spamTeAmo"></div>
-
-<img src="corazon.jpg" class="corazon-img" id="corazonImg" alt="Corazon hecho con 'te amo'">
-
-<div class="final-msg" id="mensajeFinal">
-  Escribí 720 veces "te amo" solo para ti, Mia ❤️<br> Feliz 3er mes juntos
-</div>
-
-  </div><audio id="musica" src="Musique.mp3" autoplay loop></audio>
-
-  <script>
-    const sobre = document.getElementById('sobre');
-    const contenido = document.getElementById('contenido');
-    const foto1 = document.getElementById('foto1');
-    const textoCarta = document.getElementById('textoCarta');
-    const spamTeAmo = document.getElementById('spamTeAmo');
-    const corazonImg = document.getElementById('corazonImg');
-    const mensajeFinal = document.getElementById('mensajeFinal');
-
-    const texto = `Hola, mi amor:
-
-Hoy celebramos 3 meses desde que empezó esta historia hermosa, y quiero que sepas cuánto valoro cada momento contigo.
-
-Aunque estemos lejos, siento tu presencia todos los días. A veces con una foto, a veces con un mensaje, y muchas veces solo con pensar en ti.
-
-Gracias por ser mi niña, por enseñarme que el amor no tiene fronteras.
-
-Tu risa, tu forma de hablar, tus ideas, todo tú me inspira. Eres el mejor regalo que la vida me dio.
-
-Te amo más de lo que estas palabras podrían decir. Pero hoy, intentaré demostrártelo con cada detalle.
-
-Feliz aniversario, mi vida entera.`;
-
-    function escribirTexto(str, el, callback) {
-      let i = 0;
-      el.style.display = 'block';
-      const interval = setInterval(() => {
-        el.textContent += str.charAt(i);
-        i++;
-        if (i >= str.length) {
-          clearInterval(interval);
-          if (callback) callback();
-        }
-      }, 40);
+  <audio autoplay loop>
+    <source src="Musique.mp3" type="audio/mp3">
+  </audio>  <!-- Pantalla 1: Sobre -->  <div class="pantalla activa" id="pantalla1">
+    <div class="sobre" onclick="abrirSobre()"></div>
+  </div>  <!-- Pantalla 2: Imagen 1 -->  <div class="pantalla" id="pantalla2">
+    <img src="img1.jpg" class="imagen">
+    <button onclick="siguiente(3)">Siguiente</button>
+  </div>  <!-- Pantalla 3: Texto animado -->  <div class="pantalla" id="pantalla3">
+    <div class="texto-escribiendo" id="texto"></div>
+    <button onclick="siguiente(4)">Siguiente</button>
+  </div>  <!-- Pantalla 4: Te Amo y Corazón -->  <div class="pantalla" id="pantalla4">
+    <img id="corazon" src="corazon.jpg" class="imagen" style="display:none;">
+    <div id="mensajeFinal" style="margin-top: 15px; text-align:center; font-size: 1.2em; display:none;">
+      Escribí 720 "te amo" solo para ti<br>¡Felices 3 meses juntos, mi amor!
+    </div>
+  </div>  <script>
+    function abrirSobre() {
+      document.getElementById('pantalla1').classList.remove('activa');
+      document.getElementById('pantalla2').classList.add('activa');
     }
 
-    sobre.addEventListener('click', () => {
-      sobre.style.display = 'none';
-      contenido.style.display = 'flex';
+    function siguiente(num) {
+      for (let i = 1; i <= 4; i++) {
+        document.getElementById('pantalla'+i).classList.remove('activa');
+      }
+      document.getElementById('pantalla'+num).classList.add('activa');
 
-      setTimeout(() => {
-        foto1.style.display = 'block';
-      }, 1000);
+      if (num === 3) animarTexto();
+      if (num === 4) lloverTeAmo();
+    }
 
-      setTimeout(() => {
-        escribirTexto(texto, textoCarta, () => {
+    const textoCarta = `Hola mi amor:
+
+Aunque estemos lejos, cada parte de mí te siente cerca. Cada día que pasa confirmo que estar contigo es lo mejor que me ha pasado. Gracias por ser mi compañera, mi loquita, mi amor.
+
+Feliz mes, y por muchos más.
+Con amor,
+tu loquito.`;
+
+    function animarTexto() {
+      const el = document.getElementById('texto');
+      let i = 0;
+      const intervalo = setInterval(() => {
+        if (i < textoCarta.length) {
+          el.textContent += textoCarta[i];
+          i++;
+        } else {
+          clearInterval(intervalo);
+        }
+      }, 50);
+    }
+
+    function lloverTeAmo() {
+      let total = 0;
+      const pantalla = document.getElementById('pantalla4');
+      const intervalo = setInterval(() => {
+        const span = document.createElement('span');
+        span.className = 'teamo';
+        span.textContent = 'te amo';
+        span.style.left = Math.random() * window.innerWidth + 'px';
+        pantalla.appendChild(span);
+        total++;
+        if (total >= 720) {
+          clearInterval(intervalo);
           setTimeout(() => {
-            spamTeAmo.style.display = 'block';
-            spamTeAmo.innerText = 'te amo '.repeat(720);
-
-            setTimeout(() => {
-              corazonImg.style.display = 'block';
-
-              setTimeout(() => {
-                mensajeFinal.style.display = 'block';
-              }, 2000);
-            }, 1500);
-          }, 1500);
-        });
-      }, 2000);
-    });
+            document.querySelectorAll('.teamo').forEach(el => el.remove());
+            document.getElementById('corazon').style.display = 'block';
+            document.getElementById('mensajeFinal').style.display = 'block';
+          }, 3000);
+        }
+      }, 5);
+    }
   </script></body>
 </html>
