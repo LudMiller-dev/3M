@@ -32,95 +32,34 @@
     .hidden {
       display: none;
     }
-    #carta-img {
+    .carta-img {
       width: 200px;
-      transition: transform 0.3s ease, opacity 1s ease;
+      height: auto;
+      transition: transform 0.2s;
     }
     .vibrar1 {
-      animation: vibrar1 0.3s linear;
+      animation: vibrar1 0.3s ease-in-out;
     }
     .vibrar2 {
-      animation: vibrar2 0.4s linear;
+      animation: vibrar2 0.3s ease-in-out;
+    }
+    .vibrar3 {
+      animation: vibrar3 0.3s ease-in-out;
     }
     @keyframes vibrar1 {
-      0%, 100% { transform: translate(0, 0); }
-      25% { transform: translate(-2px, 2px); }
-      50% { transform: translate(2px, -2px); }
-      75% { transform: translate(-2px, -2px); }
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(1deg); }
+      75% { transform: rotate(-1deg); }
     }
     @keyframes vibrar2 {
-      0%, 100% { transform: translate(0, 0); }
-      20% { transform: translate(-4px, 4px); }
-      40% { transform: translate(4px, -4px); }
-      60% { transform: translate(-4px, -4px); }
-      80% { transform: translate(4px, 4px); }
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(3deg); }
+      75% { transform: rotate(-3deg); }
     }
-    .rasguno {
-      position: absolute;
-      width: 80px;
-      height: 20px;
-      background: rgba(139,0,0,0.3);
-      transform: rotate(-20deg);
-      border-radius: 5px;
-    }
-    .agrandar {
-      animation: agrandarCarta 1s forwards;
-    }
-    @keyframes agrandarCarta {
-      0% {
-        transform: scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: scale(8);
-        opacity: 0;
-      }
-    }
-    .pliegue {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      width: 50px;
-      height: 50px;
-      background: #f8bbd0;
-      border-radius: 0 0 10px 0;
-      box-shadow: -2px -2px 5px rgba(0,0,0,0.2);
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-    .pliegue:hover {
-      transform: scale(1.1);
-    }
-    .texto-animado {
-      font-size: 1.5em;
-      width: 80%;
-      margin: 20px;
-      white-space: pre-wrap;
-      line-height: 1.6;
-      text-align: center;
-      color: #880e4f;
-    }
-    .te-amo {
-      position: absolute;
-      color: #d81b60;
-      font-size: 18px;
-      animation: rebote 4s ease-in-out infinite;
-      pointer-events: none;
-    }
-    @keyframes rebote {
-      0% { transform: translateY(-100vh) rotate(0deg); }
-      50% { transform: translateY(50vh) rotate(180deg); }
-      100% { transform: translateY(-100vh) rotate(360deg); }
-    }
-    #corazonFinal {
-      max-width: 80%;
-      display: none;
-      margin-top: 20px;
-    }
-    .final-text {
-      margin-top: 10px;
-      font-size: 1.2em;
-      color: #ad1457;
+    @keyframes vibrar3 {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.8); }
+      100% { transform: scale(10); opacity: 0; }
     }
   </style>
 </head>
@@ -129,53 +68,32 @@
   <source src="Musique.mp3" type="audio/mp3">
 </audio>
 <div class="page" id="pagina1">
-  <img id="carta-img" src="carta.png">
+  <img id="cartaImg" class="carta-img" src="carta.png" alt="Carta Cerrada">
 </div>
 <div class="page hidden" id="pagina2">
   <img src="img1.jpg" style="max-width: 80%; border-radius: 8px; box-shadow: 0 0 10px #0004;">
-  <div class="pliegue" onclick="siguientePagina(2)"></div>
-</div>
-<div class="page hidden" id="pagina3">
-  <div class="texto-animado" id="textoAnimado"></div>
-  <div class="pliegue" onclick="siguientePagina(3)"></div>
-</div>
-<div class="page hidden" id="pagina4">
-  <div id="lluvia"></div>
-  <img id="corazonFinal" src="corazon.jpg">
-  <div class="final-text" id="teAmoTotal"></div>
 </div>
 <script>
-  const carta = document.getElementById("carta-img");
-  const pagina1 = document.getElementById("pagina1");
-  let rasguños = 0;carta.addEventListener("click", () => { rasguños++;
+  const cartaImg = document.getElementById("cartaImg");
+  let toques = 0;cartaImg.addEventListener("click", () => { toques++;
 
-const rasguno = document.createElement("div");
-rasguno.classList.add("rasguno");
-rasguno.style.top = Math.random() * 60 + 20 + "%";
-rasguno.style.left = Math.random() * 60 + 20 + "%";
-pagina1.appendChild(rasguno);
+cartaImg.classList.remove("vibrar1", "vibrar2", "vibrar3");
+void cartaImg.offsetWidth; // reset animation
 
-carta.classList.remove("vibrar1", "vibrar2");
-if (rasguños === 1) carta.classList.add("vibrar1");
-if (rasguños === 2) carta.classList.add("vibrar2");
-
-if (rasguños >= 3) {
-  carta.src = "carta_abierta.png";
+if (toques === 1) {
+  cartaImg.classList.add("vibrar1");
+} else if (toques === 2) {
+  cartaImg.classList.add("vibrar2");
+} else if (toques >= 3) {
+  cartaImg.src = "carta_abierta.png";
+  cartaImg.classList.add("vibrar3");
   setTimeout(() => {
-    carta.classList.add("agrandar");
-    setTimeout(() => {
-      siguientePagina(1);
-    }, 1000);
-  }, 200);
+    document.getElementById("pagina1").classList.add("hidden");
+    document.getElementById("pagina2").classList.remove("hidden");
+  }, 1500);
 }
 
-});
-
-function siguientePagina(num) { document.getElementById(pagina${num}).classList.add("hidden"); document.getElementById(pagina${num + 1}).classList.remove("hidden"); if (num === 2) escribirTexto(); if (num === 3) iniciarLluvia(); }
-
-function escribirTexto() { const texto = Hola, mi amor. Esta carta no cabe en papel, por eso te la escribo aquí. Cada detalle que hiciste por mí, desde el primer origami hasta tus escapadas, me enseñó a amar mejor. Hoy, a tres meses de estar juntos, no solo te amo, te admiro. Gracias por ser tú, siempre.; let i = 0; const target = document.getElementById("textoAnimado"); const intervalo = setInterval(() => { target.textContent += texto[i]; i++; if (i >= texto.length) clearInterval(intervalo); }, 60); }
-
-function iniciarLluvia() { const lluvia = document.getElementById("lluvia"); let contador = 0; const max = 720; const intervalo = setInterval(() => { const span = document.createElement("span"); span.textContent = "te amo"; span.className = "te-amo"; span.style.left = Math.random() * 100 + "%"; span.style.top = Math.random() * -50 + "vh"; span.style.animationDuration = (3 + Math.random() * 3) + "s"; lluvia.appendChild(span); contador++; if (contador >= max) { clearInterval(intervalo); setTimeout(() => { lluvia.innerHTML = ""; document.getElementById("corazonFinal").style.display = "block"; document.getElementById("teAmoTotal").textContent = Escribí 720 'te amo' solo para ti. ¡Felices 3 meses juntos! ❤️; }, 5000); } }, 5); } </script>
+}); </script>
 
 </body>
 </html>
