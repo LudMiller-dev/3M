@@ -1,175 +1,172 @@
 <!DOCTYPE html><html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
-    <title>Para Mia, en su día 🪻🩷</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: #ffe6f0;
-            font-family: 'Marck Script', cursive;
-            color: #4d2c3d;
-            text-align: center;
-        }h1 {
-        margin-top: 30px;
-        font-size: 2.5em;
-        color: #d63384;
-    }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feliz 3er Mes</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Courier New', cursive;
+      background-color: #fff0f5;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      overflow-x: hidden;
+    }.sobre {
+  width: 220px;
+  height: 150px;
+  background: #b22222;
+  position: relative;
+  margin-top: 100px;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  animation: latido 1s infinite;
+}
 
-    .contenedor {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 40px;
-    }
+.sobre::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 110px solid transparent;
+  border-right: 110px solid transparent;
+  border-bottom: 75px solid #f08080;
+}
 
-    .envoltura-sobre {
-        position: relative;
-        width: 320px;
-        height: 220px;
-        background-color: #ffcce0;
-        border-radius: 10px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        overflow: hidden;
-    }
+@keyframes latido {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
 
-    .sobre {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-color: #fff0f5;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+.contenido {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
 
-    .carta {
-        width: 90%;
-        height: 90%;
-        background-color: white;
-        border-radius: 8px;
-        padding: 20px;
-        overflow-y: auto;
-        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+.foto {
+  max-width: 80%;
+  margin: 20px 0;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  display: none;
+}
 
-    .contenido p {
-        font-size: 1.1em;
-        line-height: 1.6;
-        margin: 0;
-    }
+.carta-texto {
+  white-space: pre-wrap;
+  font-size: 1.1em;
+  text-align: left;
+  max-width: 90%;
+  margin-bottom: 20px;
+  display: none;
+}
 
-    .corazon {
-        position: absolute;
-        bottom: 10px;
-        left: 50%;
-        transform: translateX(-50%) rotate(-45deg);
-        width: 40px;
-        height: 40px;
-        background-color: #ff3366;
-        animation: latido 1s infinite;
-    }
+.spam-teamo {
+  font-family: monospace;
+  font-size: 0.8em;
+  margin: 20px 0;
+  display: none;
+  max-width: 90%;
+}
 
-    .corazon::before,
-    .corazon::after {
-        content: "";
-        position: absolute;
-        width: 40px;
-        height: 40px;
-        background-color: #ff3366;
-        border-radius: 50%;
-    }
+.corazon-img {
+  max-width: 80%;
+  display: none;
+  margin-bottom: 20px;
+}
 
-    .corazon::before {
-        top: -20px;
-        left: 0;
-    }
+.final-msg {
+  font-weight: bold;
+  font-size: 1.1em;
+  margin: 20px;
+  display: none;
+}
 
-    .corazon::after {
-        left: 20px;
-        top: 0;
-    }
-
-    @keyframes latido {
-        0% { transform: scale(1) rotate(-45deg); }
-        25% { transform: scale(1.1) rotate(-45deg); }
-        50% { transform: scale(1) rotate(-45deg); }
-        75% { transform: scale(1.2) rotate(-45deg); }
-        100% { transform: scale(1) rotate(-45deg); }
-    }
-
-    code {
-        background: #ffe6f0;
-        padding: 2px 6px;
-        border-radius: 4px;
-        font-size: 0.95em;
-        color: #c9184a;
-    }
-
-    @media screen and (max-width: 480px) {
-        .envoltura-sobre {
-            width: 90%;
-            height: auto;
-        }
-        .carta {
-            padding: 15px;
-        }
-        .contenido p {
-            font-size: 1em;
-        }
-    }
-</style>
-
+  </style>
 </head>
 <body>
-    <h1>¡Feliz Día de la Novia, mi amor! 🐯❤️‍🔥</h1>
-    <div class="contenedor">
-        <div class="envoltura-sobre">
-            <div class="sobre">
-                <div class="carta">
-                    <div class="contenido">
-                        <strong>Hola, mi niña</strong>
-                        <p>
-                            Hoy es el día oficial de las novias, pero para mí, cada día es una razón para celebrar que te tengo en mi vida. Al principio, mi amor era un misterio, como esa carta que te envié y que tardaste 1 mes en descifrar. Ahora es tan real y claro como cada palabra que te escribo.<br><br>Aún con un océano de distancia, mi corazón late más rápido cuando veo una notificación tuya. Y aunque no estamos juntos para celebrarlo, tu presencia me da una paz y una alegría que no podría describir. Siempre estaré esperando aquel día en que podamos volver a vernos.<br><br>
+  <div class="sobre" id="sobre"></div>  <div class="contenido" id="contenido">
+    <img src="img1.jpg" class="foto" id="foto1" alt="Foto 1"><div class="carta-texto" id="textoCarta"></div>
 
-                        Gracias por ser mi alegría, mi confidente y la persona que me enseñó a amar de verdad. Gracias por ser la razón de mi sonrisa a diario.<br><br>
+<div class="spam-teamo" id="spamTeAmo"></div>
 
-                        Feliz Día de la Novia, Mia. <br> Con todo mi código (y mi corazón), <br> Tu niño enamorado (E)<br>
-                        <span style="font-size: 0.9em; color: grey;">PD: Si esta carta fuera un programa, su salida sería:</span> <br> <code>"Te amo, y siempre te elegiré."</code>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="corazon"></div>
-    </div>
+<img src="corazon.jpg" class="corazon-img" id="corazonImg" alt="Corazon hecho con 'te amo'">
+
+<div class="final-msg" id="mensajeFinal">
+  Escribí 720 veces "te amo" solo para ti, Mia ❤️<br> Feliz 3er mes juntos
 </div>
 
-<div style="text-align:center; margin-top: 10px;">
-    <span id="iconoMusica" style="font-size: 1.5em; cursor: pointer;">⏯️🎵🎶</span>
-    <audio id="miMusica" src="Musique.mp3" loop style="display:none;"></audio>
-</div>
+  </div><audio id="musica" src="Musique.mp3" autoplay loop></audio>
 
-<script>
-    const iconoMusica = document.getElementById('iconoMusica');
-    const miMusica = document.getElementById('miMusica');
-    let reproduciendo = false;
+  <script>
+    const sobre = document.getElementById('sobre');
+    const contenido = document.getElementById('contenido');
+    const foto1 = document.getElementById('foto1');
+    const textoCarta = document.getElementById('textoCarta');
+    const spamTeAmo = document.getElementById('spamTeAmo');
+    const corazonImg = document.getElementById('corazonImg');
+    const mensajeFinal = document.getElementById('mensajeFinal');
 
-    iconoMusica.addEventListener('click', function() {
-        if (reproduciendo) {
-            miMusica.pause();
-            reproduciendo = false;
-            iconoMusica.textContent = '⏯️🎶';
-        } else {
-            miMusica.play();
-            reproduciendo = true;
-            iconoMusica.textContent = '⏸️💽';
+    const texto = `Hola, mi amor:
+
+Hoy celebramos 3 meses desde que empezó esta historia hermosa, y quiero que sepas cuánto valoro cada momento contigo.
+
+Aunque estemos lejos, siento tu presencia todos los días. A veces con una foto, a veces con un mensaje, y muchas veces solo con pensar en ti.
+
+Gracias por ser mi niña, por enseñarme que el amor no tiene fronteras.
+
+Tu risa, tu forma de hablar, tus ideas, todo tú me inspira. Eres el mejor regalo que la vida me dio.
+
+Te amo más de lo que estas palabras podrían decir. Pero hoy, intentaré demostrártelo con cada detalle.
+
+Feliz aniversario, mi vida entera.`;
+
+    function escribirTexto(str, el, callback) {
+      let i = 0;
+      el.style.display = 'block';
+      const interval = setInterval(() => {
+        el.textContent += str.charAt(i);
+        i++;
+        if (i >= str.length) {
+          clearInterval(interval);
+          if (callback) callback();
         }
-    });
-</script>
+      }, 40);
+    }
 
-</body>
+    sobre.addEventListener('click', () => {
+      sobre.style.display = 'none';
+      contenido.style.display = 'flex';
+
+      setTimeout(() => {
+        foto1.style.display = 'block';
+      }, 1000);
+
+      setTimeout(() => {
+        escribirTexto(texto, textoCarta, () => {
+          setTimeout(() => {
+            spamTeAmo.style.display = 'block';
+            spamTeAmo.innerText = 'te amo '.repeat(720);
+
+            setTimeout(() => {
+              corazonImg.style.display = 'block';
+
+              setTimeout(() => {
+                mensajeFinal.style.display = 'block';
+              }, 2000);
+            }, 1500);
+          }, 1500);
+        });
+      }, 2000);
+    });
+  </script></body>
 </html>
