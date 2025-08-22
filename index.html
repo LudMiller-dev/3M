@@ -32,34 +32,78 @@
     .hidden {
       display: none;
     }
-    .carta-img {
-      width: 200px;
-      height: auto;
+    .carta {
+      width: 280px;
+      height: 180px;
+      background: url('carta-cerrada.png') no-repeat center/contain;
+      border: none;
+      position: relative;
+      overflow: hidden;
+      cursor: grab;
       transition: transform 0.2s;
     }
-    .vibrar1 {
-      animation: vibrar1 0.3s ease-in-out;
+    .carta.vibrar {
+      animation: vibrar 0.2s linear;
     }
-    .vibrar2 {
-      animation: vibrar2 0.3s ease-in-out;
+    @keyframes vibrar {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(2deg); }
+      50% { transform: rotate(-2deg); }
+      75% { transform: rotate(2deg); }
+      100% { transform: rotate(0deg); }
     }
-    .vibrar3 {
-      animation: vibrar3 0.3s ease-in-out;
+    .pliegue {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: #f8bbd0;
+      border-radius: 0 0 15px 0;
+      box-shadow: -2px -2px 5px rgba(0,0,0,0.2);
+      cursor: pointer;
+      z-index: 10;
+      animation: pulso 2s infinite;
+      transition: transform 0.3s;
     }
-    @keyframes vibrar1 {
-      0%, 100% { transform: rotate(0deg); }
-      25% { transform: rotate(1deg); }
-      75% { transform: rotate(-1deg); }
+    .pliegue:hover {
+      transform: scale(1.1);
     }
-    @keyframes vibrar2 {
-      0%, 100% { transform: rotate(0deg); }
-      25% { transform: rotate(3deg); }
-      75% { transform: rotate(-3deg); }
-    }
-    @keyframes vibrar3 {
+    @keyframes pulso {
       0% { transform: scale(1); }
-      50% { transform: scale(1.8); }
-      100% { transform: scale(10); opacity: 0; }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    .texto-animado {
+      font-size: 1.5em;
+      width: 80%;
+      margin: 20px;
+      white-space: pre-wrap;
+      line-height: 1.6;
+      text-align: center;
+      color: #880e4f;
+    }
+    .te-amo {
+      position: absolute;
+      color: #d81b60;
+      font-size: 18px;
+      animation: rebote 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes rebote {
+      0% { transform: translateY(-100vh) rotate(0deg); }
+      50% { transform: translateY(50vh) rotate(180deg); }
+      100% { transform: translateY(-100vh) rotate(360deg); }
+    }
+    #corazonFinal {
+      max-width: 80%;
+      display: none;
+      margin-top: 20px;
+    }
+    .final-text {
+      margin-top: 10px;
+      font-size: 1.2em;
+      color: #ad1457;
     }
   </style>
 </head>
@@ -68,32 +112,42 @@
   <source src="Musique.mp3" type="audio/mp3">
 </audio>
 <div class="page" id="pagina1">
-  <img id="cartaImg" class="carta-img" src="carta.png" alt="Carta Cerrada">
+  <div class="carta" id="carta"></div>
 </div>
 <div class="page hidden" id="pagina2">
   <img src="img1.jpg" style="max-width: 80%; border-radius: 8px; box-shadow: 0 0 10px #0004;">
+  <div class="pliegue" onclick="siguientePagina(2)"></div>
+</div>
+<div class="page hidden" id="pagina3">
+  <div class="texto-animado" id="textoAnimado"></div>
+  <div class="pliegue" onclick="siguientePagina(3)"></div>
+</div>
+<div class="page hidden" id="pagina4">
+  <div id="lluvia"></div>
+  <img id="corazonFinal" src="corazon.jpg">
+  <div class="final-text" id="teAmoTotal"></div>
 </div>
 <script>
-  const cartaImg = document.getElementById("cartaImg");
-  let toques = 0;cartaImg.addEventListener("click", () => { toques++;
+  const carta = document.getElementById("carta");
+  let rasguños = 0;
+  carta.addEventListener("touchstart", () => {
+    carta.classList.add("vibrar");
+    setTimeout(() => carta.classList.remove("vibrar"), 200);
+    rasguños++;
+    if (rasguños === 3) {
+      carta.style.backgroundImage = "url('carta-abierta.png')";
+      carta.style.transition = "transform 1s ease";
+      carta.style.transform = "scale(3)";
+      setTimeout(() => {
+        carta.style.display = "none";
+        siguientePagina(1);
+      }, 1000);
+    }
+  });function siguientePagina(num) { document.getElementById(pagina${num}).classList.add("hidden"); document.getElementById(pagina${num + 1}).classList.remove("hidden"); if (num === 2) escribirTexto(); if (num === 3) iniciarLluvia(); }
 
-cartaImg.classList.remove("vibrar1", "vibrar2", "vibrar3");
-void cartaImg.offsetWidth; // reset animation
+function escribirTexto() { const texto = Hola, mi amor. Esta carta no cabe en papel, por eso te la escribo aquí. Cada detalle que hiciste por mí, desde el primer origami hasta tus escapadas, me enseñó a amar mejor. Hoy, a tres meses de estar juntos, no solo te amo, te admiro. Gracias por ser tú, siempre.; let i = 0; const target = document.getElementById("textoAnimado"); const intervalo = setInterval(() => { target.textContent += texto[i]; i++; if (i >= texto.length) clearInterval(intervalo); }, 60); }
 
-if (toques === 1) {
-  cartaImg.classList.add("vibrar1");
-} else if (toques === 2) {
-  cartaImg.classList.add("vibrar2");
-} else if (toques >= 3) {
-  cartaImg.src = "carta_abierta.png";
-  cartaImg.classList.add("vibrar3");
-  setTimeout(() => {
-    document.getElementById("pagina1").classList.add("hidden");
-    document.getElementById("pagina2").classList.remove("hidden");
-  }, 1500);
-}
-
-}); </script>
+function iniciarLluvia() { const lluvia = document.getElementById("lluvia"); let contador = 0; const max = 720; const intervalo = setInterval(() => { const span = document.createElement("span"); span.textContent = "te amo"; span.className = "te-amo"; span.style.left = Math.random() * 100 + "%"; span.style.top = Math.random() * -50 + "vh"; span.style.animationDuration = (3 + Math.random() * 3) + "s"; lluvia.appendChild(span); contador++; if (contador >= max) { clearInterval(intervalo); setTimeout(() => { lluvia.innerHTML = ""; document.getElementById("corazonFinal").style.display = "block"; document.getElementById("teAmoTotal").textContent = Escribí 720 'te amo' solo para ti. ¡Felices 3 meses juntos! ❤️; }, 5000); } }, 5); } </script>
 
 </body>
 </html>
