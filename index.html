@@ -32,27 +32,49 @@
     .hidden {
       display: none;
     }
-    .carta {
-      width: 280px;
-      height: 180px;
-      background: #fff;
-      border: 2px solid #c2185b;
-      border-radius: 12px;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      cursor: grab;
-      transition: transform 0.2s;
+    #carta-img {
+      width: 200px;
+      transition: transform 0.3s ease, opacity 1s ease;
     }
-    .carta.vibrar {
-      animation: vibrar 0.2s linear;
+    .vibrar1 {
+      animation: vibrar1 0.3s linear;
     }
-    @keyframes vibrar {
-      0% { transform: rotate(0deg); }
-      25% { transform: rotate(2deg); }
-      50% { transform: rotate(-2deg); }
-      75% { transform: rotate(2deg); }
-      100% { transform: rotate(0deg); }
+    .vibrar2 {
+      animation: vibrar2 0.4s linear;
+    }
+    @keyframes vibrar1 {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(-2px, 2px); }
+      50% { transform: translate(2px, -2px); }
+      75% { transform: translate(-2px, -2px); }
+    }
+    @keyframes vibrar2 {
+      0%, 100% { transform: translate(0, 0); }
+      20% { transform: translate(-4px, 4px); }
+      40% { transform: translate(4px, -4px); }
+      60% { transform: translate(-4px, -4px); }
+      80% { transform: translate(4px, 4px); }
+    }
+    .rasguno {
+      position: absolute;
+      width: 80px;
+      height: 20px;
+      background: rgba(139,0,0,0.3);
+      transform: rotate(-20deg);
+      border-radius: 5px;
+    }
+    .agrandar {
+      animation: agrandarCarta 1s forwards;
+    }
+    @keyframes agrandarCarta {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(8);
+        opacity: 0;
+      }
     }
     .pliegue {
       position: absolute;
@@ -70,11 +92,11 @@
       transform: scale(1.1);
     }
     .texto-animado {
-      font-size: 1.8em;
-      width: 85%;
+      font-size: 1.5em;
+      width: 80%;
       margin: 20px;
       white-space: pre-wrap;
-      line-height: 1.7;
+      line-height: 1.6;
       text-align: center;
       color: #880e4f;
     }
@@ -97,9 +119,8 @@
     }
     .final-text {
       margin-top: 10px;
-      font-size: 1.3em;
+      font-size: 1.2em;
       color: #ad1457;
-      text-align: center;
     }
   </style>
 </head>
@@ -108,7 +129,7 @@
   <source src="Musique.mp3" type="audio/mp3">
 </audio>
 <div class="page" id="pagina1">
-  <div class="carta" id="carta"></div>
+  <img id="carta-img" src="carta.png">
 </div>
 <div class="page hidden" id="pagina2">
   <img src="img1.jpg" style="max-width: 80%; border-radius: 8px; box-shadow: 0 0 10px #0004;">
@@ -124,25 +145,35 @@
   <div class="final-text" id="teAmoTotal"></div>
 </div>
 <script>
-  const carta = document.getElementById("carta");
-  let rasguños = 0;
-  carta.addEventListener("touchstart", () => {
-    carta.classList.add("vibrar");
-    setTimeout(() => carta.classList.remove("vibrar"), 200);
-    rasguños++;
-    if (rasguños >= 3) {
-      carta.style.transition = "all 1s ease";
-      carta.style.opacity = 0;
-      setTimeout(() => {
-        carta.style.display = "none";
-        siguientePagina(1);
-      }, 1000);
-    }
-  });function siguientePagina(num) { document.getElementById(pagina${num}).classList.add("hidden"); document.getElementById(pagina${num + 1}).classList.remove("hidden"); if (num === 2) escribirTexto(); if (num === 3) iniciarLluvia(); }
+  const carta = document.getElementById("carta-img");
+  const pagina1 = document.getElementById("pagina1");
+  let rasguños = 0;carta.addEventListener("click", () => { rasguños++;
 
-function escribirTexto() { const texto = `Hola, mi amor. Esta carta no cabe en papel, por eso te la escribo aquí. Cada detalle que hiciste por mí, desde el primer origami hasta tus escapadas, me enseñó a amar mejor. Hoy, a tres meses de estar juntos, no solo te amo, te admiro. Gracias por ser tú, siempre.
+const rasguno = document.createElement("div");
+rasguno.classList.add("rasguno");
+rasguno.style.top = Math.random() * 60 + 20 + "%";
+rasguno.style.left = Math.random() * 60 + 20 + "%";
+pagina1.appendChild(rasguno);
 
-Desde que llegaste a mi vida, todo es más bonito, más colorido y más verdadero. No hay un solo día en que no piense en lo afortunado que soy de tenerte. Esta página es solo un intento de plasmar cuánto significas para mí. Nunca dejes de sonreír, porque tu sonrisa es mi hogar.`; let i = 0; const target = document.getElementById("textoAnimado"); const intervalo = setInterval(() => { target.textContent += texto[i]; i++; if (i >= texto.length) clearInterval(intervalo); }, 50); }
+carta.classList.remove("vibrar1", "vibrar2");
+if (rasguños === 1) carta.classList.add("vibrar1");
+if (rasguños === 2) carta.classList.add("vibrar2");
+
+if (rasguños >= 3) {
+  carta.src = "carta_abierta.png";
+  setTimeout(() => {
+    carta.classList.add("agrandar");
+    setTimeout(() => {
+      siguientePagina(1);
+    }, 1000);
+  }, 200);
+}
+
+});
+
+function siguientePagina(num) { document.getElementById(pagina${num}).classList.add("hidden"); document.getElementById(pagina${num + 1}).classList.remove("hidden"); if (num === 2) escribirTexto(); if (num === 3) iniciarLluvia(); }
+
+function escribirTexto() { const texto = Hola, mi amor. Esta carta no cabe en papel, por eso te la escribo aquí. Cada detalle que hiciste por mí, desde el primer origami hasta tus escapadas, me enseñó a amar mejor. Hoy, a tres meses de estar juntos, no solo te amo, te admiro. Gracias por ser tú, siempre.; let i = 0; const target = document.getElementById("textoAnimado"); const intervalo = setInterval(() => { target.textContent += texto[i]; i++; if (i >= texto.length) clearInterval(intervalo); }, 60); }
 
 function iniciarLluvia() { const lluvia = document.getElementById("lluvia"); let contador = 0; const max = 720; const intervalo = setInterval(() => { const span = document.createElement("span"); span.textContent = "te amo"; span.className = "te-amo"; span.style.left = Math.random() * 100 + "%"; span.style.top = Math.random() * -50 + "vh"; span.style.animationDuration = (3 + Math.random() * 3) + "s"; lluvia.appendChild(span); contador++; if (contador >= max) { clearInterval(intervalo); setTimeout(() => { lluvia.innerHTML = ""; document.getElementById("corazonFinal").style.display = "block"; document.getElementById("teAmoTotal").textContent = Escribí 720 'te amo' solo para ti. ¡Felices 3 meses juntos! ❤️; }, 5000); } }, 5); } </script>
 
