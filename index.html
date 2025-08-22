@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -35,7 +36,7 @@
     .carta {
       width: 280px;
       height: 180px;
-      background: url('carta.png') center/cover no-repeat;
+      background: url('carta-cerrada.jpg') center/cover no-repeat;
       border: 2px solid #c2185b;
       border-radius: 12px;
       position: relative;
@@ -49,7 +50,7 @@
       animation: vibrar2 0.3s linear;
     }
     .carta.abierta {
-      background: url('carta-abierta.png') center/cover no-repeat;
+      background: url('carta-abierta.jpg') center/cover no-repeat;
       animation: desaparecer 1s ease forwards;
     }
     @keyframes vibrar1 {
@@ -67,79 +68,92 @@
     @keyframes desaparecer {
       0% { transform: scale(1); opacity: 1; }
       100% { transform: scale(10); opacity: 0; }
-    }.pliegue {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  width: 60px;
-  height: 60px;
-  background: #f06292;
-  border-radius: 0 0 15px 0;
-  box-shadow: -2px -2px 5px rgba(0,0,0,0.2);
-  cursor: pointer;
-  animation: plieguePulse 1.5s infinite;
-  z-index: 10;
-}
+    }
 
-@keyframes plieguePulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
-}
+    .pliegue {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: #f06292;
+      border-radius: 0 0 15px 0;
+      box-shadow: -2px -2px 5px rgba(0,0,0,0.2);
+      cursor: pointer;
+      animation: plieguePulse 1.5s infinite;
+      z-index: 10;
+    }
 
-.texto-animado {
-  font-size: 1.6em;
-  width: 85%;
-  margin: 20px;
-  white-space: pre-wrap;
-  line-height: 1.6;
-  text-align: center;
-  color: #880e4f;
-}
+    @keyframes plieguePulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
 
-.te-amo {
-  position: absolute;
-  color: #d81b60;
-  font-size: 18px;
-  animation: rebote 4s ease-in-out infinite;
-  pointer-events: none;
-}
+    .texto-animado {
+      font-size: 1.6em;
+      width: 85%;
+      margin: 20px;
+      white-space: pre-wrap;
+      line-height: 1.6;
+      text-align: center;
+      color: #880e4f;
+    }
 
-@keyframes rebote {
-  0% { transform: translateY(-100vh) rotate(0deg); }
-  50% { transform: translateY(50vh) rotate(180deg); }
-  100% { transform: translateY(100vh) rotate(360deg); }
-}
+    .te-amo {
+      position: absolute;
+      color: #d81b60;
+      font-size: 18px;
+      animation: rebote 4s ease-in-out infinite;
+      pointer-events: none;
+    }
 
-#corazonFinal {
-  max-width: 80%;
-  display: none;
-  margin-top: 20px;
-}
+    @keyframes rebote {
+      0% { transform: translateY(-100vh) rotate(0deg); }
+      50% { transform: translateY(50vh) rotate(180deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
 
-.final-text {
-  margin-top: 10px;
-  font-size: 1.2em;
-  color: #ad1457;
-}
+    #corazonFinal {
+      max-width: 80%;
+      display: none;
+      margin-top: 20px;
+    }
 
+    .final-text {
+      margin-top: 10px;
+      font-size: 1.2em;
+      color: #ad1457;
+    }
   </style>
 </head>
-<body><audio autoplay loop>
+<body>
+
+<audio autoplay loop>
   <source src="Musique.mp3" type="audio/mp3" />
-</audio><div class="page" id="pagina1">
+</audio>
+
+<div class="page" id="pagina1">
   <div class="carta" id="carta"></div>
-</div><div class="page hidden" id="pagina2">
+</div>
+
+<div class="page hidden" id="pagina2">
   <img src="img1.jpg" style="max-width: 80%; border-radius: 8px; box-shadow: 0 0 10px #0004;">
   <div class="pliegue" onclick="siguientePagina(2)"></div>
-</div><div class="page hidden" id="pagina3">
+</div>
+
+<div class="page hidden" id="pagina3">
   <div class="texto-animado" id="textoAnimado"></div>
   <div class="pliegue" onclick="siguientePagina(3)"></div>
-</div><div class="page hidden" id="pagina4">
+</div>
+
+<div class="page hidden" id="pagina4">
   <div id="lluvia"></div>
   <img id="corazonFinal" src="corazon.jpg">
   <div class="final-text" id="teAmoTotal"></div>
-</div><script>
+</div>
+
+<script>
   const carta = document.getElementById("carta");
   let rasguños = 0;
 
