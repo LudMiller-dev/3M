@@ -70,11 +70,11 @@
       transform: scale(1.1);
     }
     .texto-animado {
-      font-size: 1.5em;
-      width: 80%;
+      font-size: 1.8em;
+      width: 85%;
       margin: 20px;
       white-space: pre-wrap;
-      line-height: 1.6;
+      line-height: 1.7;
       text-align: center;
       color: #880e4f;
     }
@@ -97,8 +97,9 @@
     }
     .final-text {
       margin-top: 10px;
-      font-size: 1.2em;
+      font-size: 1.3em;
       color: #ad1457;
+      text-align: center;
     }
   </style>
 </head>
@@ -139,7 +140,9 @@
     }
   });function siguientePagina(num) { document.getElementById(pagina${num}).classList.add("hidden"); document.getElementById(pagina${num + 1}).classList.remove("hidden"); if (num === 2) escribirTexto(); if (num === 3) iniciarLluvia(); }
 
-function escribirTexto() { const texto = Hola, mi amor. Esta carta no cabe en papel, por eso te la escribo aquí. Cada detalle que hiciste por mí, desde el primer origami hasta tus escapadas, me enseñó a amar mejor. Hoy, a tres meses de estar juntos, no solo te amo, te admiro. Gracias por ser tú, siempre.; let i = 0; const target = document.getElementById("textoAnimado"); const intervalo = setInterval(() => { target.textContent += texto[i]; i++; if (i >= texto.length) clearInterval(intervalo); }, 60); }
+function escribirTexto() { const texto = `Hola, mi amor. Esta carta no cabe en papel, por eso te la escribo aquí. Cada detalle que hiciste por mí, desde el primer origami hasta tus escapadas, me enseñó a amar mejor. Hoy, a tres meses de estar juntos, no solo te amo, te admiro. Gracias por ser tú, siempre.
+
+Desde que llegaste a mi vida, todo es más bonito, más colorido y más verdadero. No hay un solo día en que no piense en lo afortunado que soy de tenerte. Esta página es solo un intento de plasmar cuánto significas para mí. Nunca dejes de sonreír, porque tu sonrisa es mi hogar.`; let i = 0; const target = document.getElementById("textoAnimado"); const intervalo = setInterval(() => { target.textContent += texto[i]; i++; if (i >= texto.length) clearInterval(intervalo); }, 50); }
 
 function iniciarLluvia() { const lluvia = document.getElementById("lluvia"); let contador = 0; const max = 720; const intervalo = setInterval(() => { const span = document.createElement("span"); span.textContent = "te amo"; span.className = "te-amo"; span.style.left = Math.random() * 100 + "%"; span.style.top = Math.random() * -50 + "vh"; span.style.animationDuration = (3 + Math.random() * 3) + "s"; lluvia.appendChild(span); contador++; if (contador >= max) { clearInterval(intervalo); setTimeout(() => { lluvia.innerHTML = ""; document.getElementById("corazonFinal").style.display = "block"; document.getElementById("teAmoTotal").textContent = Escribí 720 'te amo' solo para ti. ¡Felices 3 meses juntos! ❤️; }, 5000); } }, 5); } </script>
 
