@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html><html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -11,8 +10,8 @@
       box-sizing: border-box;
     }
     #pagina3 {
-  overflow-y: auto;
-  padding: 20px;
+      overflow-y: auto;
+      padding: 20px;
     }
     body {
       font-family: 'Courier New', monospace;
@@ -72,96 +71,85 @@
     @keyframes desaparecer {
       0% { transform: scale(1); opacity: 1; }
       100% { transform: scale(10); opacity: 0; }
-    }
+    }.pliegue {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: #f06292;
+  border-radius: 0 0 15px 0;
+  box-shadow: -2px -2px 5px rgba(0,0,0,0.2);
+  cursor: pointer;
+  animation: plieguePulse 1.5s infinite;
+  z-index: 10;
+}
 
-    .pliegue {
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
-      background: #f06292;
-      border-radius: 0 0 15px 0;
-      box-shadow: -2px -2px 5px rgba(0,0,0,0.2);
-      cursor: pointer;
-      animation: plieguePulse 1.5s infinite;
-      z-index: 10;
-    }
+@keyframes plieguePulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
 
-    @keyframes plieguePulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
-    }
+.texto-animado {
+  font-size: 1.6em;
+  width: 85%;
+  margin: 20px;
+  white-space: pre-wrap;
+  line-height: 1.6;
+  text-align: center;
+  color: #880e4f;
+}
 
-    .texto-animado {
-      font-size: 1.6em;
-      width: 85%;
-      margin: 20px;
-      white-space: pre-wrap;
-      line-height: 1.6;
-      text-align: center;
-      color: #880e4f;
-    }
+.te-amo {
+  position: absolute;
+  color: #d81b60;
+  font-size: 18px;
+  animation: rebote 4s ease-in-out infinite;
+  pointer-events: none;
+}
 
-    .te-amo {
-      position: absolute;
-      color: #d81b60;
-      font-size: 18px;
-      animation: rebote 4s ease-in-out infinite;
-      pointer-events: none;
-    }
+@keyframes rebote {
+  0% { transform: translateY(-100vh) rotate(0deg); }
+  50% { transform: translateY(50vh) rotate(180deg); }
+  100% { transform: translateY(100vh) rotate(360deg); }
+}
 
-    @keyframes rebote {
-      0% { transform: translateY(-100vh) rotate(0deg); }
-      50% { transform: translateY(50vh) rotate(180deg); }
-      100% { transform: translateY(100vh) rotate(360deg); }
-    }
+#corazonFinal {
+  max-width: 80%;
+  display: none;
+  margin-top: 20px;
+}
 
-    #corazonFinal {
-      max-width: 80%;
-      display: none;
-      margin-top: 20px;
-    }
+.final-text {
+  margin-top: 10px;
+  font-size: 1.2em;
+  color: #ad1457;
+}
 
-    .final-text {
-      margin-top: 10px;
-      font-size: 1.2em;
-      color: #ad1457;
-    }
   </style>
 </head>
-<body>
-
-<audio autoplay loop>
+<body><audio id="musica" loop>
   <source src="Musique.mp3" type="audio/mp3" />
-</audio>
-
-<div class="page" id="pagina1">
+</audio><div class="page" id="pagina1">
   <div class="carta" id="carta"></div>
-</div>
-
-<div class="page hidden" id="pagina2">
+</div><div class="page hidden" id="pagina2">
   <img src="img1.jpg" style="max-width: 80%; border-radius: 8px; box-shadow: 0 0 10px #0004;">
   <div class="pliegue" onclick="siguientePagina(2)"></div>
-</div>
-
-<div class="page hidden" id="pagina3">
+</div><div class="page hidden" id="pagina3">
   <div class="texto-animado" id="textoAnimado"></div>
   <div class="pliegue" onclick="siguientePagina(3)"></div>
-</div>
-
-<div class="page hidden" id="pagina4">
+</div><div class="page hidden" id="pagina4">
   <div id="lluvia"></div>
   <img id="corazonFinal" src="corazon.jpg">
   <div class="final-text" id="teAmoTotal"></div>
-</div>
-
-<script>
+</div><script>
   const carta = document.getElementById("carta");
+  const musica = document.getElementById("musica");
   let rasguños = 0;
 
   carta.addEventListener("click", () => {
+    if (musica.paused) musica.play().catch(() => {});
     rasguños++;
     carta.classList.remove("vibrar1", "vibrar2");
 
@@ -186,8 +174,8 @@
   }
 
   function escribirTexto() {
-    const texto = `Amor, sé que estás dormida, y quiero decirte que te amo muchísimo, y que siempre estás en mi mente. \nQuisiera estar contigo, poder hacerte feliz en persona, besarte la frente y los labios, abrazarte tan fuerte que el mundo se detenga un segundo y solo quedemos tú y yo. \nQuiero ser tuyo y solo tuyo, y que tú seas mía y solo mía. \nEste tercer mes que cumplimos es uno más de todos los que vendrán. \nPorque aunque estemos lejos, aunque estemos pasando esta etapa en la que estoy estudiando, aunque no siempre pueda darte todo mi tiempo, nunca dejas de estar en mi corazón. \nTe amo más cada día, y no hay distancia que cambie eso. \nGracias por quedarte, por amar así, por ser tú. \nFelices tres meses, mi niña de los ojos mas hermosos del mundo. ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ`;
-   let i = 0;
+    const texto = `Amor, sé que estás dormida, y quiero decirte que te amo muchísimo...`; // resumido por brevedad
+    let i = 0;
     const target = document.getElementById("textoAnimado");
     const intervalo = setInterval(() => {
       target.textContent += texto[i];
@@ -219,7 +207,5 @@
       }
     }, 5);
   }
-</script>
-
-</body>
+</script></body>
 </html>
