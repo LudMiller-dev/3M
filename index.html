@@ -40,7 +40,7 @@
     .carta {
       width: 280px;
       height: 180px;
-      background: url('carta-cerrada.jpg') center/cover no-repeat;
+      background: url('carta.png') center/cover no-repeat;
       border: 2px solid #c2185b;
       border-radius: 12px;
       position: relative;
@@ -54,7 +54,7 @@
       animation: vibrar2 0.3s linear;
     }
     .carta.abierta {
-      background: url('carta-abierta.jpg') center/cover no-repeat;
+      background: url('carta_abierta.png') center/cover no-repeat;
       animation: desaparecer 1s ease forwards;
     }
     @keyframes vibrar1 {
@@ -186,8 +186,8 @@
   }
 
   function escribirTexto() {
-    const texto = `Amor, sé que estás dormida, y quiero decirte que te amo muchísimo, y que siempre estás en mi mente. \nQuisiera estar contigo, poder hacerte feliz en persona, besarte la frente y los labios, abrazarte tan fuerte que el mundo se detenga un segundo y solo quedemos tú y yo. \nQuiero ser tuyo y solo tuyo, y que tú seas mía y solo mía. \nEste tercer mes que cumplimos es uno más de todos los que vendrán. \nPorque aunque estemos lejos, aunque estemos pasando esta etapa en la que estoy estudiando, aunque no siempre pueda darte todo mi tiempo, nunca dejas de estar en mi corazón. \nTe amo más cada día, y no hay distancia que cambie eso. \nGracias por quedarte, por amar así, por ser tú. \nFelices tres meses, mi niña de los ojos mas hermosos del mundo.`;
-    let i = 0;
+    const texto = `Amor, sé que estás dormida, y quiero decirte que te amo muchísimo, y que siempre estás en mi mente. \nQuisiera estar contigo, poder hacerte feliz en persona, besarte la frente y los labios, abrazarte tan fuerte que el mundo se detenga un segundo y solo quedemos tú y yo. \nQuiero ser tuyo y solo tuyo, y que tú seas mía y solo mía. \nEste tercer mes que cumplimos es uno más de todos los que vendrán. \nPorque aunque estemos lejos, aunque estemos pasando esta etapa en la que estoy estudiando, aunque no siempre pueda darte todo mi tiempo, nunca dejas de estar en mi corazón. \nTe amo más cada día, y no hay distancia que cambie eso. \nGracias por quedarte, por amar así, por ser tú. \nFelices tres meses, mi niña de los ojos mas hermosos del mundo. ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ`;
+   let i = 0;
     const target = document.getElementById("textoAnimado");
     const intervalo = setInterval(() => {
       target.textContent += texto[i];
